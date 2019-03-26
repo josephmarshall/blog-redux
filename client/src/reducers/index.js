@@ -1,10 +1,10 @@
 import { combineReducers, } from 'redux';
 import blogs from './blogs';
-import nextId from './nextId'
+import posts from './posts'
 
 const rootReducer = combineReducers({
   blogs,
-  nextId,
+  posts,
 });
 
 export default rootReducer;

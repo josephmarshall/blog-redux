@@ -12,7 +12,7 @@ class Api::PostsController < ApplicationController
     if post.save
       render json: post
     else
-      render json: {post.errors}, status: 422
+      render json: { errors: @blog.errors.full_messages.join(',') }, status: 422
     end
   end
 
@@ -20,7 +20,7 @@ class Api::PostsController < ApplicationController
     if @post.update(post_params)
       render json: @post
     else
-      render json: {post.errors}, status: 422
+      render json: { errors: @blog.errors.full_messages.join(',') }, status: 422
     end
   end
 
@@ -31,7 +31,7 @@ class Api::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:body, :blog_id, :dateTime)
+    params.require(:post).permit(:body, :blog_id, :datePosted)
   end
   
   def set_blog

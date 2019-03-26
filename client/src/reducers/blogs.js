@@ -55,13 +55,6 @@ const blogs = ( state = [], action ) => {
           return action.blog
         return b
       }))
-    case 'ADD_POST':
-      const updateBlogPosts = state.map(b => {
-        if (b.id === action.post.blog_id)
-          return { name: b.name, id: b.id, posts: [...b.posts, action.post] }
-        return b  
-        })
-      return updateBlogPosts
     default:
       return state
   }

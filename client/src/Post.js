@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Post = (props) => (
+const Post = ({postData}) => (
   <div style={postStyle}>
-    <h5>{props.postdata.datePosted}</h5>
-    <div >{props.postdata.body}</div>
+    <h5>{postData.datePosted}</h5>
+    <div >{postData.body}</div>
   </div>
 )
 
