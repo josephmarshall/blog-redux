@@ -35,7 +35,7 @@ class BlogForm extends React.Component {
 
     return (
       <div>
-        <h3>Add A Blog</h3>
+        { !this.props.name && <h3>Add A Blog</h3> }
         <form onSubmit={this.handleSubmit}>
           <input value={name} onChange={this.handleChange} />
         </form>

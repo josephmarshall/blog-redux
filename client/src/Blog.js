@@ -34,10 +34,10 @@ setLoaded = () => {
         { if (b.id === parseInt(this.props.match.params.blog_id)) 
           return (
             <div key={b.id}>
-              <h1>{b.id}
+              <h1>
                 { this.state.editBlogName ? <BlogForm name={b.name} id={b.id} toggleEditForm={this.toggleEditBlogName} /> : b.name } 
-                <Icon name="edit" onClick={this.toggleEditBlogName}></Icon>
-                <Icon name="delete" onClick={()=>this.delete(b.id)} ></Icon>
+                { !this.state.editBlogName && <Icon name="edit" onClick={this.toggleEditBlogName}></Icon> }
+                { !this.state.editBlogName && <Icon name="delete" onClick={()=>this.delete(b.id)} ></Icon> }
               </h1>
               <div style={{height: "90vh", overflow: "auto", border: "solid red 1px"}}>
                 {this.props.posts.map( p => <Post postData={p} />)}
