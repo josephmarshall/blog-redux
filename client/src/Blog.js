@@ -58,9 +58,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Blog)
-
-
-//bits from previous version
-
-// <div style={{height: "90vh", overflow: "auto", border: "solid red 1px"}}>
-//   {b.posts.map(p=> <Post key={p.id} postdata={p}/>)}
