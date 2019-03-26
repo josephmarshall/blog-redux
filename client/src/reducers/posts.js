@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios from 'axios'
 
-const POSTS = 'POSTS';
-const ADD_POST = 'ADD_POST';
-// const UPDATE_BLOG = 'UPDATE_BLOG';
-// const DELETE_BLOG = 'DELETE_BLOG'
+const POSTS = 'POSTS'
+const ADD_POST = 'ADD_POST'
+const UPDATE_POST = 'UPDATE_POST'
+const DELETE_POST = 'DELETE_POST'
 
 
 export const getPosts = (cb, blog_id) => {
@@ -29,12 +29,12 @@ export const addPost = (post) => {
 //   }
 // }
 
-// export const deleteBlog = (id) => {
-//   return (dispatch) => {
-//     axios.delete(`/api/blogs/${id}`)
-//       .then( res => dispatch({ type: DELETE_BLOG, blogs: res.data }))
-//   }   
-// }
+export const deletePost = (post) => {
+  return (dispatch) => {
+    axios.delete(`/api/blogs/${post.blog_id}/posts/${post.id}`)
+      .then( res => dispatch({ type: DELETE_POST, post: res.data }))
+  }   
+}
 
 const posts = ( state = [], action ) => {
   switch(action.type) {
@@ -42,13 +42,14 @@ const posts = ( state = [], action ) => {
       return action.posts
     case 'ADD_POST':
       return [...state, action.post]
-    // case 'DELETE_BLOG':
-    //   const updateBlogs = state.filter(b => {
-    //     if (b.id === action.blogs.id) 
-    //       return null
-    //     return b
-    //   })
-//       return updateBlogs
+    case 'DELETE_POST':
+      const updatePosts = state.filter(p => {
+        if (p.id === action.post.id) 
+          return null
+        return p
+      })
+
+      return updatePosts
 //     case 'UPDATE_BLOG':
 //       return state.map((b => {
 //         if (b.id === action.blog.id) 

@@ -1,6 +1,6 @@
 class Api::PostsController < ApplicationController
   before_action :set_blog
-  before_action :set_post, only: [:update, :delete]
+  before_action :set_post, only: [:update, :destroy]
 
   def index
     posts = @blog.posts
@@ -24,8 +24,9 @@ class Api::PostsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @post.destroy
+    render json: @post
   end
 
   private

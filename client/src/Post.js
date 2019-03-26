@@ -1,8 +1,15 @@
 import React from 'react'
+import { Icon, } from 'semantic-ui-react'
+import { deletePost } from './reducers/posts'
+import { connect, } from 'react-redux'
 
-const Post = ({postData}) => (
+
+const Post = ({postData, dispatch}) => (
   <div style={postStyle}>
-    <h5>{postData.datePosted}</h5>
+    <h5>{postData.datePosted}
+      <Icon onClick={() => console.log("editPost")} name="edit" />
+      <Icon onClick={() => dispatch(deletePost(postData))} name="delete" />
+    </h5>
     <div >{postData.body}</div>
   </div>
 )
@@ -16,4 +23,4 @@ const postStyle = {
 }
 
 
-export default Post
+export default connect()(Post)
