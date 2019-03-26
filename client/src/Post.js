@@ -2,17 +2,33 @@ import React from 'react'
 import { Icon, } from 'semantic-ui-react'
 import { deletePost } from './reducers/posts'
 import { connect, } from 'react-redux'
+import PostForm from './PostForm'
 
+class Post extends React.Component {
+  
+  state = { editPost: false }
 
-const Post = ({postData, dispatch}) => (
-  <div style={postStyle}>
-    <h5>{postData.datePosted}
-      <Icon onClick={() => console.log("editPost")} name="edit" />
-      <Icon onClick={() => dispatch(deletePost(postData))} name="delete" />
-    </h5>
-    <div >{postData.body}</div>
-  </div>
-)
+  toggleEditPost = () => {
+    this.setState({ editPost: !this.state.editPost})
+  }
+
+  render(){
+    const { postData, dispatch } = this.props
+    if (this.state.editPost) {
+      return <PostForm postData={this.props.postData} toggleEditPost={this.toggleEditPost} />
+    } else {
+      return(
+        <div style={postStyle}>
+      <h5>{postData.datePosted}
+        <Icon onClick={() => this.toggleEditPost()} name="edit" />
+        <Icon onClick={() => dispatch(deletePost(postData))} name="delete" />
+      </h5>
+      <div >{postData.body}</div>
+    </div>
+     )
+    }
+  }
+}
 
 const postStyle = {
   border: "solid black 1px",

@@ -22,12 +22,12 @@ export const addPost = (post) => {
   }
 }
 
-// export const updateBlog = (blog) => {
-//   return (dispatch) => {
-//     axios.put(`/api/blogs/${blog.id}`, blog )
-//       .then( res => dispatch({ type: UPDATE_BLOG, blog: res.data}))
-//   }
-// }
+export const updatePost = (post) => {
+  return (dispatch) => {
+    axios.put(`/api/blogs/${post.blog_id}/posts/${post.id}`, post )
+      .then( res => dispatch({ type: UPDATE_POST, post: res.data}))
+  }
+}
 
 export const deletePost = (post) => {
   return (dispatch) => {
@@ -48,21 +48,13 @@ const posts = ( state = [], action ) => {
           return null
         return p
       })
-
       return updatePosts
-//     case 'UPDATE_BLOG':
-//       return state.map((b => {
-//         if (b.id === action.blog.id) 
-//           return action.blog
-//         return b
-//       }))
-//     case 'ADD_POST':
-//       const updateBlogPosts = state.map(b => {
-//         if (b.id === action.post.blog_id)
-//           return { name: b.name, id: b.id, posts: [...b.posts, action.post] }
-//         return b  
-//         })
-//       return updateBlogPosts
+    case 'UPDATE_POST':
+      return state.map((p => {
+        if (p.id === action.post.id) 
+          return action.post
+        return p
+      }))
     default:
       return state
   }
